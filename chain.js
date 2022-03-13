@@ -10,6 +10,11 @@ const startingFileName = 'start.txt'
 // di dalam file ketiga, ada sebuah nama file terakhir. console.log isi file tsb // final
 //
 // pakai fs.readFile
+
+function addTXT(string){
+    return string+".txt"
+}
+
 function roadToFinal(){
     fs.readFile(startingFileName, (err, data) =>{
         console.log(`Data 1 = ${String(data)}`)
