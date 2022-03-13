@@ -11,6 +11,32 @@ const startingFileName = 'start.txt'
 //
 // pakai fs.readFile
 function roadToFinal(){
+  fs.readFile(`data/${startingFileName}`, function(err, data){
+    let secondFile = String(data).trim()
+    fs.readFile(`data/${secondFile}`, function(err, data){
+      let thirdFile = String(data).trim()
+      fs.readFile(`data/${thirdFile}`, function(err, data){
+        let finalFile = String(data).trim()
+        fs.readFile(`data/${finalFile}`, function(err, data) {
+          console.log(`Content of final file is: ${String(data)}`)
+        })
+      })
+    })
+  })
 }
 
-roadToFinal()
+const fsPromise = require('fs/promises')
+
+async function roadToFinalPromise(){
+  // let secondFile = String(await fsPromise.readFile(`data/${startingFileName}`)).trim()
+  let temp = await fsPromise.readFile(`data/${startingFileName}`)
+  let secondFile = String(temp).trim()
+
+  let thirdFile = String(await fsPromise.readFile(`data/${secondFile}`)).trim()
+  let finalFile = String(await fsPromise.readFile(`data/${thirdFile}`)).trim()
+  let finalFileContent = String(await fsPromise.readFile(`data/${finalFile}`)).trim()
+
+  console.log(`Content of final file is: ${finalFileContent}`)
+}
+
+roadToFinalPromise()
