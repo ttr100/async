@@ -11,6 +11,26 @@ const startingFileName = 'start.txt'
 //
 // pakai fs.readFile
 function roadToFinal(){
+    fs.readFile(startingFileName, (err, data) =>{
+        console.log(`Data 1 = ${String(data)}`)
+        console.log(`reading ${addTXT(String(data))}`)
+
+        fs.readFile(addTXT(String(data)), (err, data)=>{
+            console.log(`Data 2 = ${String(data)}`)
+            console.log(`reading ${addTXT(String(data))}`)
+            
+            fs.readFile(addTXT(String(data)), (err, data)=>{
+                console.log(`Data 3 = ${String(data)}`)
+                console.log(`reading ${addTXT(String(data))}`)
+                
+                fs.readFile(addTXT(String(data)), (err, data)=>{
+                    console.log(`Data 4 = ${String(data)}`)
+        
+                })
+            })
+        })
+
+    })
 }
 
 roadToFinal()
